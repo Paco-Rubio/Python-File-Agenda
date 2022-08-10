@@ -1,2 +1,2 @@
 This program acts as an agenda to store names, birthdays, relations, mails, etc... 
-It can also calculate dates and ages, as well as searching through the agenda, counting lines, copying specific lines and opening the agenda file.
+It can also calculate dates and ages, as well as searching through the agenda, counting lines, copying specific lines, searching and copying emails with the corresponding name and opening the agenda file.
