@@ -7,6 +7,7 @@ import time
 import re
 import pyperclip
 import math
+import webbrowser
 
 today = date.today()
 
@@ -22,10 +23,11 @@ def choose():
     print (" L -> Lines in file ")
     print (" F -> Finish ")
     print (" C -> Copy line ")
+    print (" M -> Mail ")
     print ()
     time.sleep(0.5)
 
-    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C)  ")
+    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M)  ")
     option = str(rawoption)
     if option in ("w", "W"):
          addtofile()
@@ -45,7 +47,10 @@ def choose():
         countlines()
     elif option in ("c","C"):
         copyline()
+    elif option in ("m","M"):
+        mail()
     else:
+        print()
         print(" That's not a possible option")
         print()
         choose()
@@ -63,9 +68,10 @@ def restart():
     print (" L -> Lines in file ")
     print (" F -> Finish ")
     print (" C -> Copy line ")
+    print (" M -> Mail ")
     print()
     time.sleep(0.5)
-    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C)  ")
+    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M)  ")
     again = str(rawagain)
     if again in ("w", "W"):
         addtofile()
@@ -85,6 +91,8 @@ def restart():
         countlines()
     elif again in ("C","c"):
         copyline()
+    elif again in ("M","m"):
+        mail()
     else:
         print()
         print(" That's not a possible option")
@@ -455,6 +463,33 @@ def copyline():
     file.close
     restart()
 
-#def mail():
+def mail():
+    file = open("Agenda.txt", "r")
+    mailpattern = r"\w+@\w+\.\w+"
+    print()
+    w = " "
+    rawchosennamemail = input(" What name is the mail linked to? ")
+    chosennamemail = " " + rawchosennamemail.title() + " "
+    namemailline =  " "
+    while(w):
+        w = file.readline()
+        if re.search(chosennamemail, w):
+            namemailline = w
+            break
+    if re.search(mailpattern, namemailline):
+        rawmailmatch = re.search(mailpattern, namemailline)
+        mailmatch = str(rawmailmatch.group())
+        pyperclip.copy (mailmatch)
+        print()
+        answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
+        if answergmail in ("y", "Y"):
+            webbrowser.open('http://gmail.com')
+            choose()
+        else:
+            choose()
+    else:           
+        print()
+        print(" Couldn't find the name or mail")
+        choose()
 
 choose()
