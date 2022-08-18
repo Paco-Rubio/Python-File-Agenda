@@ -1,5 +1,4 @@
 from tokenize import group
-from turtle import goto
 from rich.progress import track
 import os
 from datetime import date
@@ -40,15 +39,15 @@ def choose():
     elif option in ("f", "F"):
          finish()
     elif option in ("a","A"):
-        age()
+         age()
     elif option in ("o","O"):
-        openfile()
+         openfile()
     elif option in ("l","L"):
-        countlines()
+         countlines()
     elif option in ("c","C"):
-        copyline()
+         copyline()
     elif option in ("m","M"):
-        mail()
+         mail()
     else:
         print()
         print(" That's not a possible option")
@@ -74,25 +73,25 @@ def restart():
     rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M)  ")
     again = str(rawagain)
     if again in ("w", "W"):
-        addtofile()
+         addtofile()
     elif again in ("s", "S"):
-        searchinfile()
+         searchinfile()
     elif again in ("d", "D"):
          daysleft()
     elif again in ("f", "F"):
-        finish()
+         finish()
     elif again in ("e", "E"):
-        clean()
+         clean()
     elif again in ("a","A"):
-        age()
+         age()
     elif again in ("o","O"):
-        openfile()
+         openfile()
     elif again in ("l","L"):
-        countlines()
+         countlines()
     elif again in ("C","c"):
-        copyline()
+         copyline()
     elif again in ("M","m"):
-        mail()
+         mail()
     else:
         print()
         print(" That's not a possible option")
@@ -445,7 +444,7 @@ def countlines():
         s = file.readline()
         rawcountlines = rawcountlines + 1
     
-    rawcountlines = rawcountlines - 2
+    rawcountlines = rawcountlines - 1
     countlines = str(rawcountlines)
     print()
     print(" There are " + str(countlines) + " lines in the file")
@@ -483,13 +482,17 @@ def mail():
         print()
         answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
         if answergmail in ("y", "Y"):
-            webbrowser.open('http://gmail.com')
-            choose()
+            try:
+                os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
+                choose()
+            except: 
+                webbrowser.open('http://gmail.com')
+                choose()
         else:
             choose()
     else:           
         print()
         print(" Couldn't find the name or mail")
-        choose()
+        mail()
 
 choose()
