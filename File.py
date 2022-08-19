@@ -7,8 +7,29 @@ import re
 import pyperclip
 import math
 import webbrowser
+from os.path import exists
 
 today = date.today()
+
+def rawconfig():
+
+    if exists("config.txt"):
+        configfile = open("config.txt", "r")
+        rconfig = configfile.read()
+        config = rconfig.split("\n", 1)[0]
+        configfile.close
+        return config
+        
+    else:
+        configfile = open("config.txt", "w+")
+        configfile.write("gmail")
+        configfile.write("\n")
+        configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
+        configfile.close
+        configfile = open("config.txt", "r")
+        rconfig = configfile.read()
+        config = rconfig.split("\n", 1)[0]
+        return config
 
 def choose():
     
@@ -330,6 +351,7 @@ def daysleft():
             daysleft()
 
 def finish():
+    
     print()
     print(" Finishing...")
     time.sleep(0.1)
@@ -346,10 +368,12 @@ def finish():
     time.sleep(0.25)
     
 def clean():
+
     os.system("cls")
     choose()
 
 def age():
+
     print()
     rawagedate = input(" What date do you want to operate with? (YY-MM-DD) (Name)  ")
     year = today.year
@@ -435,6 +459,7 @@ def openfile():
     restart()
 
 def countlines():
+
     file = open("Agenda.txt", "r")
     s = " "
     rawcountlines = 0
@@ -463,6 +488,7 @@ def copyline():
     restart()
 
 def mail():
+
     file = open("Agenda.txt", "r")
     mailpattern = r"\w+@\w+\.\w+"
     print()
@@ -482,12 +508,21 @@ def mail():
         print()
         answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
         if answergmail in ("y", "Y"):
-            try:
-                os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
-                choose()
-            except: 
-                webbrowser.open('http://gmail.com')
-                choose()
+
+                raconfig = rawconfig()
+                config = str(raconfig)
+
+                if config == "gmail":
+                    if exists("Gmail.lnk"):
+                        os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
+                        choose()
+                    else: 
+                        webbrowser.open('https://mail.google.com/mail/u/0/')
+                        choose()
+                elif config == "outlook":
+                    webbrowser.open('https://outlook.live.com/mail/0/')
+                else: 
+                    print(" The congig file has an unsupported email provider")
         else:
             choose()
     else:           
