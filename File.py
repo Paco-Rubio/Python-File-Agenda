@@ -1,3 +1,4 @@
+
 from tokenize import group
 from rich.progress import track
 import os
@@ -10,26 +11,6 @@ import webbrowser
 from os.path import exists
 
 today = date.today()
-
-def rawconfig():
-
-    if exists("config.txt"):
-        configfile = open("config.txt", "r")
-        rconfig = configfile.read()
-        config = rconfig.split("\n", 1)[0]
-        configfile.close
-        return config
-        
-    else:
-        configfile = open("config.txt", "w+")
-        configfile.write("gmail")
-        configfile.write("\n")
-        configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
-        configfile.close
-        configfile = open("config.txt", "r")
-        rconfig = configfile.read()
-        config = rconfig.split("\n", 1)[0]
-        return config
 
 def choose():
     
@@ -509,8 +490,8 @@ def mail():
         answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
         if answergmail in ("y", "Y"):
 
-                raconfig = rawconfig()
-                config = str(raconfig)
+                raconfig = setting()
+                config = str(raconfig[0])
 
                 if config == "gmail":
                     if exists("Gmail.lnk"):
@@ -530,5 +511,23 @@ def mail():
         print(" Couldn't find the name or mail")
         mail()
 
+def setting():
+
+    if exists("config.txt"):
+        
+        with open("config.txt") as settingsfile:
+            settings = list(settingsfile)[0::2]
+        settings = ([s.replace('\n', '') for s in settings])
+        return settings
+
+    else:
+        configfile = open("config.txt", "w+")
+        configfile.write("gmail")
+        configfile.write("\n")
+        configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
+        configfile.close
+        setting()
+        
+    restart()
 
 choose()
