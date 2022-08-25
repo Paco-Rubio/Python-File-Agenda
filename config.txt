@@ -1,2 +1,4 @@
 gmail
 # Choose your email provider: 'gmail', 'outlook' 
+y
+# Reminder of previously selected birthdays?: 'y' / 'n' 

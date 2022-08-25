@@ -1,5 +1,4 @@
 
-from tokenize import group
 from rich.progress import track
 import os
 from datetime import date
@@ -9,8 +8,28 @@ import pyperclip
 import math
 import webbrowser
 from os.path import exists
+from win10toast import ToastNotifier
 
 today = date.today()
+
+toaster = ToastNotifier()
+
+if not exists("config.txt"):
+    configfile = open("config.txt", "w+")
+    configfile.write("gmail")
+    configfile.write("\n")
+    configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
+    configfile.write("\n")
+    configfile.write("y")
+    configfile.write("\n")
+    configfile.write("# Reminder of previously selected birthdays?: 'y' / 'n' ")
+    configfile.write("\n")
+    configfile.close
+
+if not exists("birthday.txt"):
+    birthdayfile = open("birthday.txt", "w+")
+    birthdayfile.write("# This file is used to store birthdays the user want's to be reminded of")
+    birthdayfile.close
 
 def choose():
     
@@ -25,10 +44,11 @@ def choose():
     print (" F -> Finish ")
     print (" C -> Copy line ")
     print (" M -> Mail ")
+    print (" B -> Birthdays ")
     print ()
-    time.sleep(0.5)
+    time.sleep(0.2)
 
-    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M)  ")
+    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M / B)  ")
     option = str(rawoption)
     if option in ("w", "W"):
          addtofile()
@@ -50,6 +70,8 @@ def choose():
          copyline()
     elif option in ("m","M"):
          mail()
+    elif option in ("B","b"):
+         birthday()
     else:
         print()
         print(" That's not a possible option")
@@ -58,7 +80,7 @@ def choose():
     
 def restart():  
     
-    time.sleep(1.5)
+    time.sleep(0.5)
     print ()
     print (" W -> Write names ")
     print (" S -> Search in file ")
@@ -70,9 +92,10 @@ def restart():
     print (" F -> Finish ")
     print (" C -> Copy line ")
     print (" M -> Mail ")
+    print (" B -> Birthdays ")
     print()
     time.sleep(0.5)
-    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M)  ")
+    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M / B)  ")
     again = str(rawagain)
     if again in ("w", "W"):
          addtofile()
@@ -94,6 +117,8 @@ def restart():
          copyline()
     elif again in ("M","m"):
          mail()
+    elif again in ("B","b"):
+         birthday()
     else:
         print()
         print(" That's not a possible option")
@@ -228,23 +253,52 @@ def searchinfile():
     
     file = open("Agenda.txt", "r")
     print ()
-    rawword = input (" Word to search:  ('.' for wildcard) ")
+    rawword = input (" Word to search:  (Enter or '.' for wildcard) ")
     print()
     word = rawword.title()
     
     s = " "
     rawcount = 1
     for i in track(range(10), description= " Processing..."):
-        time.sleep(0.1)
+        time.sleep(0.05)
     print()
+    linets = []
     while(s):
         s = file.readline()
         l = re.split(("[ -]"), s)
         l_str = str(l)
         count = str(rawcount)
         if re.search(word, l_str):
-            print(" Line " + count + ":" + s)
+            if s == "":
+                linets.append(rawcount - 1)
+            else:
+                print(" Line " + count + ":" + s)
+                linets.append(rawcount - 1)
         rawcount = rawcount + 1
+
+    copyanswer = input(" Do you want to copy this line? (Y / Enter) ")
+    if copyanswer in ("y", "Y"):
+
+        file = open("Agenda.txt", "r") 
+        line = file.readlines() 
+        linetsnmb = 0
+        if len(linets) == 1:
+            linenmb = int(linets[int(linetsnmb)])
+            pyperclip.copy (line[linenmb])
+            linetsnmb = linetsnmb + 1
+        else:
+            linelist = []
+            times = int(len(linets)-1)
+            ttime = 0
+            while ttime != times:
+                linenmb = int(linets[int(linetsnmb)])
+                linelist.append(line[linenmb])
+                linetsnmb = linetsnmb + 1
+                ttime = ttime + 1
+            linelistcopy = "".join([str(x) for x in linelist])
+            pyperclip.copy (linelistcopy)
+        file.close
+        restart()
     
     file.close
     restart()
@@ -335,18 +389,16 @@ def finish():
     
     print()
     print(" Finishing...")
-    time.sleep(0.1)
+    time.sleep(0.7)
     print()
     print(" 3")
-    time.sleep(0.25)
+    time.sleep(0.7)
     print()
     print(" 2")
-    time.sleep(0.25)
+    time.sleep(0.7)
     print()
     print(" 1")
-    time.sleep(0.25)
-    print()
-    time.sleep(0.25)
+    time.sleep(0.7)
     
 def clean():
 
@@ -436,8 +488,37 @@ def age():
 def openfile():
 
     print()
-    os.startfile("Agenda.txt")
-    restart()
+    whichfile = input(" Which file do you want to open? (Agenda -> A) (Settings -> S) (Birthdays -> B)  ")
+    try:
+        if whichfile in ("a","A"):
+            print()
+            os.startfile("Agenda.txt")
+            restart()
+        else:
+            raise Exception
+    except:
+        try:
+            if whichfile in ("b","B"):
+                print()
+                os.startfile("birthday.txt")
+                restart()
+            else:
+                raise Exception
+        except:
+            try:
+                if whichfile in ("s","S"):
+                    print()
+                    os.startfile("config.txt")
+                    restart()
+                else:
+                    raise Exception
+            except:
+                try:
+                    print()
+                    print(" That file isn't available")
+                    openfile()
+                except:
+                    openfile()
 
 def countlines():
 
@@ -513,21 +594,46 @@ def mail():
 
 def setting():
 
-    if exists("config.txt"):
-        
-        with open("config.txt") as settingsfile:
-            settings = list(settingsfile)[0::2]
-        settings = ([s.replace('\n', '') for s in settings])
-        return settings
+    with open("config.txt") as settingsfile:
+        settings = list(settingsfile)[0::2]
+    settings = ([s.replace('\n', '') for s in settings])
+    return settings
 
-    else:
-        configfile = open("config.txt", "w+")
-        configfile.write("gmail")
-        configfile.write("\n")
-        configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
-        configfile.close
-        setting()
+def birthday():
+  
+    print()
+    rawchosendate = input(" What birthday do you want to be reminded of? (Name) ")
+    w = " "
+    nameline = ""
+    rawchosennamedays = rawchosendate.title()
+    chosennamedays = " " + rawchosennamedays + " "
+    file = open("Agenda.txt", "r")
+    searchdayspattern = r"\-\d{2}\-\d{2}"
+    while(w):
+        w = file.readline()
+        if re.search(chosennamedays, w):
+            nameline = w
+            break
+    if re.search(searchdayspattern, nameline):
+        rawrawdatematch = re.search(searchdayspattern, nameline)
+        rawdatematch = rawrawdatematch.group()
+        datematch = rawdatematch.split("-")
+        file.close
+        del datematch[0]
+        rawmonth, rawday = (datematch)
+        file = open("birthday.txt", "a+")
+        file.write("\n")
+        file.write(" " + rawchosennamedays + " | " + rawmonth + "-" + rawday + " ")
+        print()
+        print (" This birthday has been added to list")
+        file.close()
+        restart()
         
-    restart()
-
+    else:           
+        print()
+        print(" Couldn't find the name or date (Or it was incorrect)")
+        birthday()
+        
 choose()
+
+#add calendar support      os.startfile (r"C:\Users\Jorge\Desktop\Calendario (2).lnk")
