@@ -633,7 +633,7 @@ def birthday():
         print()
         print(" Couldn't find the name or date (Or it was incorrect)")
         birthday()
-        
+
 choose()
 
-#add calendar support      os.startfile (r"C:\Users\Jorge\Desktop\Calendario (2).lnk")
+#os.startfile (r"C:\Users\Jorge\Desktop\WindowsCalendar.lnk")
