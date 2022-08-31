@@ -20,9 +20,17 @@ if not exists("config.txt"):
     configfile.write("\n")
     configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
     configfile.write("\n")
-    configfile.write("y")
+    configfile.write("yes")
     configfile.write("\n")
-    configfile.write("# Reminder of previously selected birthdays?: 'y' / 'n' ")
+    configfile.write("# Reminder of previously selected birthdays?: 'yes' / 'no' ")
+    configfile.write("\n")
+    configfile.write("windows")
+    configfile.write("\n")
+    configfile.write("# Chooose your calendar provider: 'windows', 'google'")  
+    configfile.write("\n")
+    configfile.write("mystudylife")
+    configfile.write("\n")
+    configfile.write("# Choose your management app:'mystudylife', 'todoist'")
     configfile.write("\n")
     configfile.close
 
@@ -45,10 +53,11 @@ def choose():
     print (" C -> Copy line ")
     print (" M -> Mail ")
     print (" B -> Birthdays ")
+    print (" R -> Run Program ")
     print ()
     time.sleep(0.2)
 
-    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M / B)  ")
+    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M / B / R)  ")
     option = str(rawoption)
     if option in ("w", "W"):
          addtofile()
@@ -72,6 +81,8 @@ def choose():
          mail()
     elif option in ("B","b"):
          birthday()
+    elif option in ("R","r"):
+         run()
     else:
         print()
         print(" That's not a possible option")
@@ -93,9 +104,10 @@ def restart():
     print (" C -> Copy line ")
     print (" M -> Mail ")
     print (" B -> Birthdays ")
+    print (" R -> Run Program ")
     print()
     time.sleep(0.5)
-    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M / B)  ")
+    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M / B / R)  ")
     again = str(rawagain)
     if again in ("w", "W"):
          addtofile()
@@ -119,6 +131,8 @@ def restart():
          mail()
     elif again in ("B","b"):
          birthday()
+    elif again in ("R","r"):
+         run()
     else:
         print()
         print(" That's not a possible option")
@@ -584,7 +598,9 @@ def mail():
                 elif config == "outlook":
                     webbrowser.open('https://outlook.live.com/mail/0/')
                 else: 
-                    print(" The congig file has an unsupported email provider")
+                    print()
+                    print(" The config file has an unsupported email provider")
+                    restart()
         else:
             choose()
     else:           
@@ -634,6 +650,64 @@ def birthday():
         print(" Couldn't find the name or date (Or it was incorrect)")
         birthday()
 
-choose()
+def run():
+    
+    print()
+    whichprogram = input(" Which program do you want to run? (Birthdaycheck -> B) (Calendar -> C) (Manager -> T) (Mail -> M) ")
 
-#os.startfile (r"C:\Users\Jorge\Desktop\WindowsCalendar.lnk")
+    if whichprogram in ("B","b"):
+        os.startfile("BirthdaysCheck.pyw")
+        restart()
+
+    elif whichprogram in ("c","C"):
+
+        runconfig = setting()
+        rconfig = str(runconfig[2])
+
+        if rconfig == "windows":
+            os.startfile (r"C:\Users\Jorge\Desktop\WindowsCalendar.lnk")
+            restart()
+        elif rconfig == "google":
+            webbrowser.open ("https://calendar.google.com/calendar/")
+            restart()
+        else:
+            print()
+            print(" The config file has an unsupported calendar provider")
+            restart()
+
+    elif whichprogram in ("m","M"):
+
+        raconfig = setting()
+        config = str(raconfig[0])
+
+        if config == "gmail":
+            if exists("Gmail.lnk"):
+                os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
+                restart()
+            else: 
+                webbrowser.open('https://mail.google.com/mail/u/0/')
+                restart()
+        elif config == "outlook":
+                webbrowser.open('https://outlook.live.com/mail/0/')
+        else: 
+            print()
+            print(" The config file has an unsupported email provider")
+            restart()
+
+    elif whichprogram in ("T","t"):
+
+        runconfig = setting()
+        rconfig = str(runconfig[3])
+
+        if rconfig == "mystudylife":
+            os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe  --profile-directory=Default --app-id=nonejgjmnjaipcfdceoijmmfmhojbham --app-url=https://app.mystudylife.com/schedule --app-launch-source=4")
+            restart()
+        elif rconfig == "todoist":
+            os.startfile (r"C:\Users\Jorge\AppData\Local\Programs\todoist\Todoist.exe")
+            restart()
+        else:
+            print()
+            print(" The config file has an unsupported manager provider")
+            restart()
+
+choose()

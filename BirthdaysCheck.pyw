@@ -17,9 +17,17 @@ if not exists("config.txt"):
     configfile.write("\n")
     configfile.write("# Choose your email provider: 'gmail', 'outlook' ")
     configfile.write("\n")
-    configfile.write("y")
+    configfile.write("yes")
     configfile.write("\n")
-    configfile.write("# Reminder of previously selected birthdays?: 'y' / 'n' ")
+    configfile.write("# Reminder of previously selected birthdays?: 'yes' / 'no' ")
+    configfile.write("\n")
+    configfile.write("windows")
+    configfile.write("\n")
+    configfile.write("# Chooose your calendar provider: 'windows', 'google'")  
+    configfile.write("\n")
+    configfile.write("mystudylife")
+    configfile.write("\n")
+    configfile.write("# Choose your management app:'mystudylife', 'todoist'")
     configfile.write("\n")
     configfile.close
 
@@ -35,7 +43,7 @@ toaster = ToastNotifier()
 rawdoit = setting()
 doit = str(rawdoit[1])
 
-if doit in ("y", "Y"):
+if doit in ("yes"):
     birthdayfile = "birthday.txt"
     rawtoday = date.today()
     strtoday = str(rawtoday)
