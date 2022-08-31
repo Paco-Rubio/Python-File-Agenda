@@ -653,7 +653,7 @@ def birthday():
 def run():
     
     print()
-    whichprogram = input(" Which program do you want to run? (Birthdaycheck -> B) (Calendar -> C) (Manager -> T) (Mail -> M) ")
+    whichprogram = input(" Which program do you want to run? (Birthday -> B) (Calendar -> C) (Task Manager -> T) (Mail -> M) ")
 
     if whichprogram in ("B","b"):
         os.startfile("BirthdaysCheck.pyw")
@@ -710,4 +710,4 @@ def run():
             print(" The config file has an unsupported manager provider")
             restart()
 
-choose()
+choose() 
