@@ -235,6 +235,13 @@ def addtofile():
         file.close
         file = open("Agenda.txt", "a+")
         print()
+
+        phonenumber = (input(" " + name.title() +"'s phone number?  "))
+        file.write(phonenumber)
+        file.write(" | ")
+        file.close
+        file = open("Agenda.txt", "a+")
+        print()
         
         done = False
         while not done:
@@ -302,7 +309,7 @@ def searchinfile():
             linetsnmb = linetsnmb + 1
         else:
             linelist = []
-            times = int(len(linets)-1)
+            times = int(len(linets))
             ttime = 0
             while ttime != times:
                 linenmb = int(linets[int(linetsnmb)])
