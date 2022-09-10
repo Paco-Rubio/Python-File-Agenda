@@ -1,6 +1,7 @@
 from win10toast import ToastNotifier
 from datetime import date
 from datetime import datetime
+import datetime
 import re
 from os.path import exists
 import time
@@ -48,10 +49,27 @@ if doit in ("yes"):
     rawtoday = date.today()
     strtoday = str(rawtoday)
     today = re.sub(r'.', '', strtoday, count = 5)
+    rawnextweektoday = datetime.date.today()
+    nextweektoday = rawnextweektoday + datetime.timedelta(days=7)
+    nexttoday = re.sub(r'.', '', str(nextweektoday), count = 5)
+    nexttoday = str(nexttoday)
 
     fileName = open(birthdayfile, "r")
+
     for line in fileName:
         if today in line:
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast("It is" + person.title() + "'s birthday today!!", " ")
+
+    fileName.close()
+
+    nextfileName = open(birthdayfile, "r")
+
+    for nextline in nextfileName:
+        if nexttoday in nextline:
+            nexteachline = nextline.split(" | ")
+            nextperson = nexteachline[0]
+            toaster.show_toast("It is" + nextperson.title() + "'s birthday in a week!!", " ")
+
+    nextfileName.close()
