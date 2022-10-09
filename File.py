@@ -1,5 +1,4 @@
 
-from rich.progress import track
 import os
 from datetime import date
 import time
@@ -86,7 +85,6 @@ def choose():
     else:
         print()
         print(" That's not a possible option")
-        print()
         choose()
     
 def restart():  
@@ -136,7 +134,6 @@ def restart():
     else:
         print()
         print(" That's not a possible option")
-        print()
         restart()
     
 def addtofile():
@@ -280,9 +277,6 @@ def searchinfile():
     
     s = " "
     rawcount = 1
-    for i in track(range(10), description= " Processing..."):
-        time.sleep(0.05)
-    print()
     linets = []
     while(s):
         s = file.readline()
@@ -718,3 +712,5 @@ def run():
             restart()
 
 choose() 
+
+#whatsapp support with phone
