@@ -419,6 +419,7 @@ def finish():
     print()
     print(" 1")
     time.sleep(0.7)
+    quit()
     
 def clean():
 
