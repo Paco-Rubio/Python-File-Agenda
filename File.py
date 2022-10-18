@@ -268,10 +268,10 @@ def addtofile():
     restart ()
 
 def searchinfile():
-    
+     
     file = open("Agenda.txt", "r")
     print ()
-    rawword = input (" Word to search:  (Enter or '.' for wildcard) ")
+    rawword = input (" Word to search  (Enter or '.' for wildcard): ")
     print()
     word = rawword.title()
     
@@ -291,29 +291,34 @@ def searchinfile():
                 linets.append(rawcount - 1)
         rawcount = rawcount + 1
 
-    copyanswer = input(" Do you want to copy this line? (Y / Enter) ")
-    if copyanswer in ("y", "Y"):
+    file.close()
 
-        file = open("Agenda.txt", "r") 
-        line = file.readlines() 
-        linetsnmb = 0
-        if len(linets) == 1:
-            linenmb = int(linets[int(linetsnmb)])
-            pyperclip.copy (line[linenmb])
-            linetsnmb = linetsnmb + 1
-        else:
-            linelist = []
-            times = int(len(linets))
-            ttime = 0
-            while ttime != times:
+    if len(linets) < 1:
+        print(" There is nothing to copy")
+    else:
+        copyanswer = input(" Do you want to copy this line? (Y / Enter) ")
+        if copyanswer in ("y", "Y"):
+
+            file = open("Agenda.txt", "r") 
+            line = file.readlines() 
+            linetsnmb = 0
+            if len(linets) == 1:
                 linenmb = int(linets[int(linetsnmb)])
-                linelist.append(line[linenmb])
+                pyperclip.copy (line[linenmb])
                 linetsnmb = linetsnmb + 1
-                ttime = ttime + 1
-            linelistcopy = "".join([str(x) for x in linelist])
-            pyperclip.copy (linelistcopy)
-        file.close
-        restart()
+            else:
+                linelist = []
+                times = int(len(linets))
+                ttime = 0
+                while ttime < (times-1):
+                    linenmb = int(linets[int(linetsnmb)])
+                    linelist.append(line[linenmb])
+                    linetsnmb = linetsnmb + 1
+                    ttime = ttime + 1
+                linelistcopy = "".join([str(x) for x in linelist])
+                pyperclip.copy (linelistcopy)
+            file.close
+            restart()
     
     file.close
     restart()
