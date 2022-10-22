@@ -38,6 +38,8 @@ if not exists("birthday.txt"):
     birthdayfile.write("# This file is used to store birthdays the user want's to be reminded of")
     birthdayfile.close
 
+
+
 def choose():
     
     print ()
