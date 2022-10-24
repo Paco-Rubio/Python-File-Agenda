@@ -4,6 +4,7 @@ from datetime import datetime
 import datetime
 import re
 from os.path import exists
+import playsound
 
 if not exists("birthday.txt"):
     birthdayfile = open("birthday.txt", "w+")
@@ -91,6 +92,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday today!!", " ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
 
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -100,6 +102,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday in a week!!", " 7 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -109,6 +112,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday is near!!", " 6 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -118,6 +122,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday is near!!", " 5 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -127,6 +132,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday is near!!", " 4 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -136,6 +142,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday is near!!", " 3 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -145,6 +152,7 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday is near!!", " 2 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -154,5 +162,6 @@ if doit in ("yes"):
             eachline = line.split(" | ")
             person = eachline[0]
             toaster.show_toast(person.title() + "'s birthday tomorrow!!", " 1 days left ", icon_path="Birthday.ico", duration=6 )
+            playsound.playsound("sound.mp3")
 
     fileName.close()
