@@ -345,15 +345,12 @@ def daysleft():
             result2_days_str = str(result2.days)
             print()
             print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
-            print()
         elif result_days_int == 0:
             print()
             print(" That's today!")
-            print()
         elif result_days_int > 0:
             print()
             print (" There are " + result_days_str + " days left")
-            print()
         restart()
     except:
         w = " "
@@ -389,17 +386,14 @@ def daysleft():
                 result2_days_str = str(result2.days)
                 print()
                 print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
-                print()
                 restart()
             elif result_days_int == 0:
                 print()
                 print(" That's today!")
-                print()
                 restart()
             elif result_days_int > 0:
                 print()
                 print (" There are " + result_days_str + " days left")
-                print()
                 restart()
         
         else:           
@@ -449,15 +443,12 @@ def age():
         if resultage_int < 0:
             print()
             print(" You must insert a past date, that date hasn't happened yet!")
-            print()
         elif resultage_int == 0:
             print()
             print(" That's today!")
-            print()
         elif resultage_int > 0:
             print()
             print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
-            print()
         restart()
     except:
         q = " "
@@ -493,15 +484,12 @@ def age():
             if resultage_int < 0:
                 print()
                 print(" You must insert a past date, that date hasn't happened yet!")
-                print()
             elif resultage_int == 0:
                 print()
                 print(" That's today!")
-                print()
             elif resultage_int > 0:
                 print()
                 print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
-                print()
             restart()
         else:
             print()
