@@ -622,25 +622,32 @@ def birthday():
     chosennamedays = " " + rawchosennamedays + " "
     file = open("Agenda.txt", "r")
     searchdayspattern = r"\-\d{2}\-\d{2}"
+    rawmonth = ""
+    rawday = ""
     while(w):
         w = file.readline()
         if re.search(chosennamedays, w):
             nameline = w
             break
     if re.search(searchdayspattern, nameline):
-        rawrawdatematch = re.search(searchdayspattern, nameline)
-        rawdatematch = rawrawdatematch.group()
-        datematch = rawdatematch.split("-")
-        file.close
-        del datematch[0]
-        rawmonth, rawday = (datematch)
-        file = open("birthday.txt", "a+")
-        file.write("\n")
-        file.write(" " + rawchosennamedays + " | " + rawmonth + "-" + rawday + " ")
-        print()
-        print (" This birthday has been added to list")
-        file.close()
-        restart()
+        if rawchosendate == "":
+            print()
+            print(" No person has been found with that name")
+            restart()
+        else:
+            rawrawdatematch = re.search(searchdayspattern, nameline)
+            rawdatematch = rawrawdatematch.group()
+            datematch = rawdatematch.split("-")
+            file.close
+            del datematch[0]
+            rawmonth, rawday = (datematch)
+            file = open("birthday.txt", "a+")
+            file.write("\n")
+            file.write(" " + rawchosennamedays + " | " + rawmonth + "-" + rawday + " ")
+            print()
+            print (" This birthday has been added to list")
+            file.close()
+            restart()
         
     else:           
         print()
