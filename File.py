@@ -641,9 +641,11 @@ def birthday():
             file.close
             del datematch[0]
             rawmonth, rawday = (datematch)
+            print()
+            nametoadd = input(" What name do you want this date to be associated with? ")
             file = open("birthday.txt", "a+")
             file.write("\n")
-            file.write(" " + rawchosennamedays + " | " + rawmonth + "-" + rawday + " ")
+            file.write(" " + nametoadd + " | " + rawmonth + "-" + rawday + " ")
             print()
             print (" This birthday has been added to list")
             file.close()
@@ -713,6 +715,50 @@ def run():
             print()
             print(" The config file has an unsupported manager provider")
             restart()
+
+def phone():
+    file = open("Agenda.txt", "r")
+    phonepattern = r"\d\d\d\d\d\d\d\d\d"
+    print()
+    w = " "
+    rawchosennamephone = input(" What name is the phone number linked to? ")
+    chosennamephone = " " + rawchosennamephone.title() + " "
+    namephoneline =  " "
+    while(w):
+        w = file.readline()
+        if re.search(chosennamephone, w):
+            namephoneline = w
+            break
+    if re.search(phonepattern, namephoneline):
+        rawphonematch = re.search(phonepattern, namephoneline)
+        phonematch = str(rawphonematch.group())
+        pyperclip.copy (phonematch)
+        print()
+        answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
+        if answergmail in ("y", "Y"):
+
+                raconfig = setting()
+                config = str(raconfig[0])
+
+                if config == "gmail":
+                    if exists("Gmail.lnk"):
+                        os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
+                        choose()
+                    else: 
+                        webbrowser.open('https://mail.google.com/mail/u/0/')
+                        choose()
+                elif config == "outlook":
+                    webbrowser.open('https://outlook.live.com/mail/0/')
+                else: 
+                    print()
+                    print(" The config file has an unsupported email provider")
+                    restart()
+        else:
+            choose()
+    else:           
+        print()
+        print(" Couldn't find the name or phone number")
+        mail()
 
 choose() 
 
