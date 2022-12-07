@@ -643,9 +643,14 @@ def birthday():
             rawmonth, rawday = (datematch)
             print()
             nametoadd = input(" What name do you want this date to be associated with? ")
-            file = open("birthday.txt", "a+")
-            file.write("\n")
-            file.write(" " + nametoadd + " | " + rawmonth + "-" + rawday + " ")
+            if nametoadd == "":
+                file = open("birthday.txt", "a+")
+                file.write("\n")
+                file.write(" " + rawchosennamedays + " | " + rawmonth + "-" + rawday + " ") 
+            else:
+                file = open("birthday.txt", "a+")
+                file.write("\n")
+                file.write(" " + nametoadd + " | " + rawmonth + "-" + rawday + " ")
             print()
             print (" This birthday has been added to list")
             file.close()
