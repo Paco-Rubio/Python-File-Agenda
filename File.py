@@ -693,8 +693,8 @@ def run():
 
         if config == "gmail":
             if exists("Gmail.lnk"):
-                os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe  --profile-directory=Default --app-id=jadpjgflkokghajgdbeojainkclgmiap --app-url=https://app.mystudylife.com/dashboard --app-launch-source=4")
-                restart() 
+                os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
+                restart()
             else: 
                 webbrowser.open('https://mail.google.com/mail/u/0/')
                 restart()
@@ -711,7 +711,7 @@ def run():
         rconfig = str(runconfig[3])
 
         if rconfig == "mystudylife":
-            os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe  --profile-directory=Default --app-id=nonejgjmnjaipcfdceoijmmfmhojbham --app-url=https://app.mystudylife.com/schedule --app-launch-source=4")
+            os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe  --profile-directory=Default --app-id=jadpjgflkokghajgdbeojainkclgmiap --app-url=https://app.mystudylife.com/dashboard --app-launch-source=4")
             restart()
         elif rconfig == "todoist":
             os.startfile (r"C:\Users\Jorge\AppData\Local\Programs\todoist\Todoist.exe")
