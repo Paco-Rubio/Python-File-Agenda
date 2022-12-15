@@ -8,7 +8,7 @@ import playsound
 
 if not exists("birthday.txt"):
     birthdayfile = open("birthday.txt", "w+")
-    birthdayfile.write("# This file is used to store birthdays the user want's to be reminded of")
+    birthdayfile.write("# This file is used to store birthdays the user wants to be reminded of")
     birthdayfile.close
 
 if not exists("config.txt"):
@@ -30,6 +30,9 @@ if not exists("config.txt"):
     configfile.write("\n")
     configfile.write("# Choose your management app:'mystudylife', 'todoist'")
     configfile.write("\n")
+    configfile.write("english")
+    configfile.write("\n")
+    configfile.write("# Choose your preferred language: 'english', 'spanish'")
     configfile.close
 
 def setting():
@@ -43,6 +46,9 @@ toaster = ToastNotifier()
 
 rawdoit = setting()
 doit = str(rawdoit[1])
+
+languageconfig = setting()
+langconfig = str(languageconfig[4])
 
 if doit in ("yes"):
     birthdayfile = "birthday.txt"
@@ -91,7 +97,10 @@ if doit in ("yes"):
         if today in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday today!!", " ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Hoy es el cumpleaños de" + person.title(), " ", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday today!!", " ", icon_path="Birthday.ico", duration=6 )
 
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -100,7 +109,10 @@ if doit in ("yes"):
         if today7 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday in a week!!", " 7 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 7 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday in a week!!", " 7 days left ", icon_path="Birthday.ico", duration=6 )
                 
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -109,7 +121,10 @@ if doit in ("yes"):
         if today6 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday is near!!", " 6 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 6 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday is near!!", " 6 days left ", icon_path="Birthday.ico", duration=6 )
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -118,7 +133,10 @@ if doit in ("yes"):
         if today5 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday is near!!", " 5 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 5 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday is near!!", " 5 days left ", icon_path="Birthday.ico", duration=6 )
              
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -127,7 +145,10 @@ if doit in ("yes"):
         if today4 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday is near!!", " 4 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 4 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday is near!!", " 4 days left ", icon_path="Birthday.ico", duration=6 )
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -136,7 +157,10 @@ if doit in ("yes"):
         if today3 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday is near!!", " 3 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 3 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday is near!!", " 3 days left ", icon_path="Birthday.ico", duration=6 )
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -145,7 +169,10 @@ if doit in ("yes"):
         if today2 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday is near!!", " 2 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Quedan 2 días", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday is near!!", " 2 days left ", icon_path="Birthday.ico", duration=6 )
             
     fileName.close()
     fileName = open(birthdayfile, "r")
@@ -154,6 +181,9 @@ if doit in ("yes"):
         if today1 in line:
             eachline = line.split(" | ")
             person = eachline[0]
-            toaster.show_toast(person.title() + "'s birthday tomorrow!!", " 1 days left ", icon_path="Birthday.ico", duration=6 )
+            if langconfig == "spanish":
+                toaster.show_toast("Se acerca el cumpleaños de" + person.title(), " Queda 1 día", icon_path="Birthday.ico", duration=6 )
+            else:
+                toaster.show_toast(person.title() + "'s birthday tomorrow!!", " 1 day left ", icon_path="Birthday.ico", duration=6 )
     
     fileName.close()

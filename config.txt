@@ -6,3 +6,5 @@ windows
 # Chooose your calendar provider: 'windows', 'google'
 mystudylife
 # Choose your management app:'mystudylife', 'todoist'
+english
+# Choose your preferred language: 'english', 'spanish'

@@ -31,112 +31,225 @@ if not exists("config.txt"):
     configfile.write("\n")
     configfile.write("# Choose your management app:'mystudylife', 'todoist'")
     configfile.write("\n")
+    configfile.write("english")
+    configfile.write("\n")
+    configfile.write("# Choose your preferred language: 'english', 'spanish'")
     configfile.close
 
 if not exists("birthday.txt"):
     birthdayfile = open("birthday.txt", "w+")
-    birthdayfile.write("# This file is used to store birthdays the user want's to be reminded of")
+    birthdayfile.write("# This file is used to store birthdays the user wants to be reminded of")
     birthdayfile.close
-
 
 
 def choose():
     
-    print ()
-    print (" W -> Write names ")
-    print (" S -> Search in file ")
-    print (" D -> Days left ")
-    print (" A -> Age ")
-    print (" O -> Open file ")
-    print (" E -> Erase ")
-    print (" L -> Lines in file ")
-    print (" F -> Finish ")
-    print (" C -> Copy line ")
-    print (" M -> Mail ")
-    print (" B -> Birthdays ")
-    print (" R -> Run Program ")
-    print ()
-    time.sleep(0.2)
+    if not langconfig == "spanish":
 
-    rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M / B / R)  ")
-    option = str(rawoption)
-    if option in ("w", "W"):
+        print ()
+        print (" W -> Write names ")
+        print (" S -> Search in agenda ")
+        print (" D -> Days left ")
+        print (" A -> Age ")
+        print (" O -> Open file ")
+        print (" E -> Erase ")
+        print (" L -> Lines in agenda ")
+        print (" F -> Finish ")
+        print (" C -> Copy line ")
+        print (" M -> Mail ")
+        print (" B -> Birthdays ")
+        print (" R -> Run Program ")
+        print (" P -> Phone ")
+        print ()
+        time.sleep(0.2)
+
+        rawoption = input(" What do you want to do? (W / S / D / A / O / E / L / F / C / M / B / R / P)  ")
+        option = str(rawoption)
+        if option in ("w", "W"):
          addtofile()
-    elif option in ("s", "S"):
+        elif option in ("s", "S"):
          searchinfile()
-    elif option in ("d", "D"):
+        elif option in ("d", "D"):
          daysleft()
-    elif option in ("e", "E"):
+        elif option in ("e", "E"):
          clean()
-    elif option in ("f", "F"):
+        elif option in ("f", "F"):
          finish()
-    elif option in ("a","A"):
+        elif option in ("a","A"):
          age()
-    elif option in ("o","O"):
+        elif option in ("o","O"):
          openfile()
-    elif option in ("l","L"):
+        elif option in ("l","L"):
          countlines()
-    elif option in ("c","C"):
+        elif option in ("c","C"):
          copyline()
-    elif option in ("m","M"):
+        elif option in ("m","M"):
          mail()
-    elif option in ("B","b"):
+        elif option in ("B","b"):
          birthday()
-    elif option in ("R","r"):
+        elif option in ("R","r"):
          run()
+        elif option in ("P", "p"):
+         phone()
+        else:
+            print()
+            print(" That's not a possible option")
+            choose()
     else:
-        print()
-        print(" That's not a possible option")
-        choose()
+
+        print ()
+        print (" W -> Añadir nombres ")
+        print (" S -> Buscar en agenda ")
+        print (" D -> Días restantes ")
+        print (" A -> Edad ")
+        print (" O -> Abrir archivo ")
+        print (" E -> Borrar ")
+        print (" L -> Líneas en agenda ")
+        print (" F -> Finalizar ")
+        print (" C -> Copiar linea ")
+        print (" M -> Correo ")
+        print (" B -> Cumpleaños ")
+        print (" R -> Ejecutar programa ")
+        print (" P -> Teléfono ")
+        print ()
+        time.sleep(0.2)
+
+        rawoption = input(" ¿Qué quieres hacer? (W / S / D / A / O / E / L / F / C / M / B / R / P)  ")
+        option = str(rawoption)
+        if option in ("w", "W"):
+         addtofile()
+        elif option in ("s", "S"):
+         searchinfile()
+        elif option in ("d", "D"):
+         daysleft()
+        elif option in ("e", "E"):
+         clean()
+        elif option in ("f", "F"):
+         finish()
+        elif option in ("a","A"):
+         age()
+        elif option in ("o","O"):
+         openfile()
+        elif option in ("l","L"):
+         countlines()
+        elif option in ("c","C"):
+         copyline()
+        elif option in ("m","M"):
+         mail()
+        elif option in ("B","b"):
+         birthday()
+        elif option in ("R","r"):
+         run()
+        elif option in ("P", "p"):
+         phone()
+        else:
+            print()
+            print(" Esa no es una opción posible")
+            choose()
     
 def restart():  
     
-    time.sleep(0.5)
-    print ()
-    print (" W -> Write names ")
-    print (" S -> Search in file ")
-    print (" D -> Days left ")
-    print (" A -> Age ")
-    print (" O -> Open file ")
-    print (" E -> Erase ")
-    print (" L -> Lines in file ")
-    print (" F -> Finish ")
-    print (" C -> Copy line ")
-    print (" M -> Mail ")
-    print (" B -> Birthdays ")
-    print (" R -> Run Program ")
-    print()
-    time.sleep(0.5)
-    rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M / B / R)  ")
-    again = str(rawagain)
-    if again in ("w", "W"):
-         addtofile()
-    elif again in ("s", "S"):
-         searchinfile()
-    elif again in ("d", "D"):
-         daysleft()
-    elif again in ("f", "F"):
-         finish()
-    elif again in ("e", "E"):
-         clean()
-    elif again in ("a","A"):
-         age()
-    elif again in ("o","O"):
-         openfile()
-    elif again in ("l","L"):
-         countlines()
-    elif again in ("C","c"):
-         copyline()
-    elif again in ("M","m"):
-         mail()
-    elif again in ("B","b"):
-         birthday()
-    elif again in ("R","r"):
-         run()
-    else:
+    if not langconfig == "spanish":
+
+        time.sleep(0.5)
+        print ()
+        print (" W -> Write names ")
+        print (" S -> Search in agenda ")
+        print (" D -> Days left ")
+        print (" A -> Age ")
+        print (" O -> Open file ")
+        print (" E -> Erase ")
+        print (" L -> Lines in agenda ")
+        print (" F -> Finish ")
+        print (" C -> Copy line ")
+        print (" M -> Mail ")
+        print (" B -> Birthdays ")
+        print (" R -> Run Program ")
+        print (" P -> Phone ")
         print()
-        print(" That's not a possible option")
-        restart()
+        time.sleep(0.5)
+        rawagain = input(" Anything else? (W / S / D / A / O / E / L / F / C / M / B / R / P)  ")
+        again = str(rawagain)
+        if again in ("w", "W"):
+         addtofile()
+        elif again in ("s", "S"):
+         searchinfile()
+        elif again in ("d", "D"):
+         daysleft()
+        elif again in ("f", "F"):
+         finish()
+        elif again in ("e", "E"):
+         clean()
+        elif again in ("a","A"):
+         age()
+        elif again in ("o","O"):
+         openfile()
+        elif again in ("l","L"):
+         countlines()
+        elif again in ("C","c"):
+         copyline()
+        elif again in ("M","m"):
+         mail()
+        elif again in ("B","b"):
+         birthday()
+        elif again in ("R","r"):
+         run()
+        elif again in ("P","p"):
+         phone()
+        else:
+            print()
+            print(" That's not a possible option")
+            restart()
+    else:
+        time.sleep(0.5)
+        print ()
+        print (" W -> Añadir nombres ")
+        print (" S -> Buscar en agenda ")
+        print (" D -> Días restantes ")
+        print (" A -> Edad ")
+        print (" O -> Abrir archivo ")
+        print (" E -> Borrar ")
+        print (" L -> Lineas en agenda ")
+        print (" F -> Finalizar ")
+        print (" C -> Copiar linea ")
+        print (" M -> Correo ")
+        print (" B -> Cumpleaños ")
+        print (" R -> Ejecutar programa ")
+        print (" P -> Teléfono ")
+        print()
+        time.sleep(0.5)
+        rawagain = input(" ¿Algo más? (W / S / D / A / O / E / L / F / C / M / B / R / P)  ")
+        again = str(rawagain)
+        if again in ("w", "W"):
+         addtofile()
+        elif again in ("s", "S"):
+         searchinfile()
+        elif again in ("d", "D"):
+         daysleft()
+        elif again in ("f", "F"):
+         finish()
+        elif again in ("e", "E"):
+         clean()
+        elif again in ("a","A"):
+         age()
+        elif again in ("o","O"):
+         openfile()
+        elif again in ("l","L"):
+         countlines()
+        elif again in ("C","c"):
+         copyline()
+        elif again in ("M","m"):
+         mail()
+        elif again in ("B","b"):
+         birthday()
+        elif again in ("R","r"):
+         run()
+        elif again in ("P","p"):
+         phone()
+        else:
+            print()
+            print(" Esa no es una opción posible")
+            restart()
     
 def addtofile():
     
@@ -144,17 +257,26 @@ def addtofile():
     possible = False
     raworder = 1
     while not possible:
-        rawnum = input(" How many people?  ")
+        if not langconfig == "spanish":
+            rawnum = input(" How many people?  ")
+        else:
+            rawnum = input (" ¿Cuántas personas? ")
         file = open("Agenda.txt", "a+")
         if rawnum == "":
             print()
-            print(" You should at least add one person")
+            if not langconfig == "spanish":
+                print(" You should at least add one person")
+            else: 
+                print(" Debe ser mínimo una persona")
             print()
         elif int(rawnum) >= 1:
             possible = True
         else:
             print()
-            print(" You should at least add one person")
+            if not langconfig == "spanish":
+                print(" You should at least add one person")
+            else: 
+                print(" Debe ser mínimo una persona")
             print()
             
     
@@ -164,10 +286,17 @@ def addtofile():
         print()
         iscomplete = False
         while not iscomplete:
-            name = (input(" Name number " + order + "?  "))
+
+            if not langconfig == "spanish":
+                name = (input(" Name number " + order + "?  "))
+            else:
+                name = (input(" ¿Nombre número " + order + "?  "))
             if name == "":
                 print()
-                print(" You must insert a name")
+                if not langconfig == "spanish":
+                    print(" You must insert a name")
+                else: 
+                    print(" Debes insertar un nombre")
                 print()
             else:
                 iscomplete = True
@@ -178,8 +307,10 @@ def addtofile():
                 file = open("Agenda.txt", "a+")
                 print()
  
-        
-        surname = (input(" " + name.title() +"'s surname?  "))
+        if not langconfig == "spanish":
+            surname = (input(" " + name.title() +"'s surname?  "))
+        else: 
+            surname = (input(" ¿Apellidos de " + name.title() +"?  "))
         file.write(surname.title())
         file.write(" | ")
         file.close
@@ -189,7 +320,10 @@ def addtofile():
         isdone = False
         while not isdone:
             
-            rawbirthday = input (" When is " + name.title() + "'s birthday? (YYYY-MM-DD)  ")
+            if not langconfig == "spanish":
+                rawbirthday = input (" When is " + name.title() + "'s birthday? (YYYY-MM-DD)  ")
+            else: 
+                rawbirthday = input (" ¿Cuándo es el cumpleaños de " + name.title() + "? (YYYY-MM-DD)  ")
             birthdaypattern = re.compile('\d{4}(?P<sep>[-])\d{2}(?P=sep)\d{2}')
             birthdaymatch = re.match(birthdaypattern, rawbirthday)
             
@@ -206,7 +340,10 @@ def addtofile():
                     isdone = True
                 except:
                     print()
-                    print(" That's not a valid date")
+                    if not langconfig == "spanish":
+                        print(" That's not a valid date")
+                    else:
+                        print(" Esa no es una fecha válida")
                     print()
             elif rawbirthday == "":
                 isdone = True
@@ -217,25 +354,36 @@ def addtofile():
                 print()
             else:
                 print()
-                print(" That's not a valid date")
+                if not langconfig == "spanish":
+                    print(" That's not a valid date")
+                else:
+                    print(" Esa no es una fecha válida")
                 print()
             
-
-        relation = input(" How is " + name.title() + " related to you? ")
+        if not langconfig == "spanish":
+            relation = input(" How is " + name.title() + " related to you?  ")
+        else:
+            relation = input(" ¿Cuál es tu relación con " + name.title() + "?  ")
         file.write(relation.title())
         file.write(" | ")
         file.close
         file = open("Agenda.txt", "a+")
         print()
 
-        alias = input(" " + name.title() + "'s alias? ")
+        if not langconfig == "spanish":
+            alias = input(" " + name.title() + "'s alias? ")
+        else:
+            alias = input(" ¿Cuál es el apodo de " + name.title() + "?  ")
         file.write(alias)
         file.write(" | ")
         file.close
         file = open("Agenda.txt", "a+")
         print()
 
-        phonenumber = (input(" " + name.title() +"'s phone number?  "))
+        if not langconfig == "spanish":
+            phonenumber = (input(" " + name.title() +"'s phone number?  "))
+        else:
+            phonenumber = (input(" ¿Cuál es el número de teléfono de " + name.title() +"?  "))
         file.write(phonenumber)
         file.write(" | ")
         file.close
@@ -244,7 +392,10 @@ def addtofile():
         
         done = False
         while not done:
-            email = input(" What is " + name.title() + "'s email? ")
+            if not langconfig == "spanish":
+                email = input(" What is " + name.title() + "'s email? ")
+            else:
+                email = input(" ¿Cuál es el email de " + name.title() + "? ")
             pattern = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)"
             match = re.search(pattern, email)
             if match:
@@ -260,7 +411,10 @@ def addtofile():
                 file = open("Agenda.txt", "a+")
             else:
                 print()
-                print(" That's not a valid email, try again")
+                if not langconfig == "spanish":
+                    print(" That's not a valid email, try again")
+                else:
+                    print(" Ese no es un email válido, vuelve a intentarlo")
                 file = open("Agenda.txt", "a+")
 
             print()
@@ -273,7 +427,10 @@ def searchinfile():
      
     file = open("Agenda.txt", "r")
     print ()
-    rawword = input (" Word to search  (Enter or '.' for wildcard): ")
+    if not langconfig == "spanish":
+        rawword = input (" Word to search  (Enter or '.' for wildcard): ")
+    else:
+        rawword = input(" Palabra a buscar (Enter o '.' para comodín): ")
     print()
     word = rawword.title()
     
@@ -289,16 +446,25 @@ def searchinfile():
             if s == "":
                 linets.append(rawcount - 1)
             else:
-                print(" Line " + count + ":" + s)
+                if not langconfig == "spanish":
+                    print(" Line " + count + ":" + s)
+                else:
+                    print(" Línea" + count + ":" + s)
                 linets.append(rawcount - 1)
         rawcount = rawcount + 1
 
     file.close()
 
     if len(linets) < 1:
-        print(" There is nothing to copy")
+        if not langconfig == "spanish":
+            print(" There is nothing to copy")
+        else:
+            print(" No hay nada que copiar")
     else:
-        copyanswer = input(" Do you want to copy this line? (Y / Enter) ")
+        if not langconfig == "spanish":
+            copyanswer = input(" Do you want to copy this line? (Y / Enter) ")
+        else:
+            copyanswer = input(" ¿Quieres copiar esta línea? (Y / Enter) ")
         if copyanswer in ("y", "Y"):
 
             file = open("Agenda.txt", "r") 
@@ -328,51 +494,21 @@ def searchinfile():
 def daysleft():
     
     print()
-    rawchosendate = input(" What date do you want to operate with? (MM-DD) (Name) ")
-    year = today.year
-    try:
-        month, day = map(int, rawchosendate.split("-"))
-        chosendate = date(year, month, day)
-        result = (chosendate - today)
-        result_days_str = str(result.days)
-        result_days_int = int(result_days_str)
-        if result_days_int < 0:
-            result_days_str = str(result.days)
-            result_days_str = result_days_str.replace ('-', '')
-            year2 = year + 1
-            chosendate2 = date(year2, month, day)
-            result2 = (chosendate2 - today)
-            result2_days_str = str(result2.days)
-            print()
-            print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
-        elif result_days_int == 0:
-            print()
-            print(" That's today!")
-        elif result_days_int > 0:
-            print()
-            print (" There are " + result_days_str + " days left")
-        restart()
-    except:
-        w = " "
-        nameline = ""
-        rawchosennamedays = rawchosendate.title()
-        chosennamedays = " " + rawchosennamedays + " "
-        file = open("Agenda.txt", "r")
+    if not langconfig == "spanish":
+        rawchosendate = input(" What date do you want to operate with? (MM-DD) (Name) ")
+    else:
+        rawchosendate = input(" ¿Con qué fecha quieres operar? (MM-DD) (Nombre) ")
+    if str(rawchosendate) == "":
+        print()
+        if not langconfig == "spanish":
+            print(" Couldn't find the name or date (Or it was incorrect)")
+        else:
+            print(" No se encontró el nombre o fecha (O era incorrecto)")
+        daysleft()
+    else:
         year = today.year
-        searchdayspattern = r"\-\d{2}\-\d{2}"
-        while(w):
-            w = file.readline()
-            if re.search(chosennamedays, w):
-                nameline = w
-                break
-        if re.search(searchdayspattern, nameline):
-            rawrawdatematch = re.search(searchdayspattern, nameline)
-            rawdatematch = rawrawdatematch.group()
-            datematch = rawdatematch.split("-")
-            del datematch[0]
-            rawmonth, rawday = (datematch)
-            month = int(rawmonth)
-            day = int(rawday)
+        try:
+            month, day = map(int, rawchosendate.split("-"))
             chosendate = date(year, month, day)
             result = (chosendate - today)
             result_days_str = str(result.days)
@@ -385,26 +521,91 @@ def daysleft():
                 result2 = (chosendate2 - today)
                 result2_days_str = str(result2.days)
                 print()
-                print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
-                restart()
+                if not langconfig == "spanish":
+                    print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
+                else:
+                    print(" Debes insertar una fecha futura, esa fecha ocurrió hace", result_days_str, "días!, y volverá a ocurrir en " + result2_days_str + " días.")
             elif result_days_int == 0:
                 print()
-                print(" That's today!")
-                restart()
+                if not langconfig == "spanish":
+                    print(" That's today!")
+                else:
+                    print(" Eso es hoy!")
             elif result_days_int > 0:
                 print()
-                print (" There are " + result_days_str + " days left")
-                restart()
+                if not langconfig == "spanish":
+                    print (" There are " + result_days_str + " days left")
+                else:
+                    print (" Quedan " + result_days_str + " días")
+            restart()
+        except:
+            w = " "
+            nameline = ""
+            rawchosennamedays = rawchosendate.title()
+            chosennamedays = " " + rawchosennamedays + " "
+            file = open("Agenda.txt", "r")
+            year = today.year
+            searchdayspattern = r"\-\d{2}\-\d{2}"
+            while(w):
+                w = file.readline()
+                if re.search(chosennamedays, w):
+                    nameline = w
+                    break
+            if re.search(searchdayspattern, nameline):
+                rawrawdatematch = re.search(searchdayspattern, nameline)
+                rawdatematch = rawrawdatematch.group()
+                datematch = rawdatematch.split("-")
+                del datematch[0]
+                rawmonth, rawday = (datematch)
+                month = int(rawmonth)
+                day = int(rawday)
+                chosendate = date(year, month, day)
+                result = (chosendate - today)
+                result_days_str = str(result.days)
+                result_days_int = int(result_days_str)
+                if result_days_int < 0:
+                    result_days_str = str(result.days)
+                    result_days_str = result_days_str.replace ('-', '')
+                    year2 = year + 1
+                    chosendate2 = date(year2, month, day)
+                    result2 = (chosendate2 - today)
+                    result2_days_str = str(result2.days)
+                    print()
+                    if not langconfig == "spanish":
+                        print(" You must insert a future date, that date happened", result_days_str, "days ago!, and will happen again in " + result2_days_str + " days.")
+                    else:
+                        print(" Debes insertar una fecha futura, esa fecha ocurrió hace", result_days_str, "días!, y volverá a ocurrir en " + result2_days_str + " días.")
+                    restart()
+                elif result_days_int == 0:
+                    print()
+                    if not langconfig == "spanish":
+                        print(" That's today!")
+                    else:
+                        print(" Eso es hoy!")
+                    restart()
+                elif result_days_int > 0:
+                    print()
+                    if not langconfig == "spanish":
+                        print (" There are " + result_days_str + " days left")
+                    else: 
+                        print (" Quedan " + result_days_str + " días")
+                    restart()
         
         else:           
             print()
-            print(" Couldn't find the name or date (Or it was incorrect)")
+            if not langconfig == "spanish":
+                print(" Couldn't find the name or date (Or it was incorrect)")
+            else:
+                print(" No se encontró el nombre o la fecha (O era incorrecto)")
             daysleft()
 
 def finish():
     
     print()
-    print(" Finishing...")
+    if not langconfig == "spanish":
+        print(" Finishing...")
+    else:
+        print(" Finalizando...")
     time.sleep(0.7)
     print()
     print(" 3")
@@ -425,51 +626,21 @@ def clean():
 def age():
 
     print()
-    rawagedate = input(" What date do you want to operate with? (YY-MM-DD) (Name)  ")
-    year = today.year
-    try:
-        year, month, day = map(int, rawagedate.split("-"))
-        agedate = date(year, month, day)
-        resultage = (today - agedate)
-        resultage_days_str = str(resultage.days)
-        resultage_days_int_raw = int(resultage_days_str)
-        resultage_int = int(resultage_days_int_raw // 365.1)
-        resultage_str = str(resultage_int)
-        resultage_days_left_int_raw = resultage_days_int_raw - (resultage_int * 365.1)
-        resultage_months_left_raw = resultage_days_left_int_raw // 30.4375
-        resultage_months_left = str(int(resultage_months_left_raw))
-        resultage_days_left_int_raw = resultage_days_left_int_raw - (resultage_months_left_raw * 30.4375)
-        resultage_days_left = str(math.trunc(resultage_days_left_int_raw))
-        if resultage_int < 0:
-            print()
-            print(" You must insert a past date, that date hasn't happened yet!")
-        elif resultage_int == 0:
-            print()
-            print(" That's today!")
-        elif resultage_int > 0:
-            print()
-            print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
-        restart()
-    except:
-        q = " "
-        namelineq = ""
-        rawagedateq = rawagedate.title()
-        agedateq = " " + rawagedateq + " "
-        file = open("Agenda.txt", "r")
-        searchagepattern = r"\d{4}\-\d{2}\-\d{2}"
-        while(q):
-            q = file.readline()
-            if re.search(agedateq, q):
-                namelineq = q
-                break
-        if re.search(searchagepattern, namelineq):
-            rawrawagedatematch = re.search(searchagepattern, namelineq)
-            rawagedatematch = rawrawagedatematch.group()
-            agedatematch = rawagedatematch.split("-")
-            rawyear, rawmonth, rawday = (agedatematch)
-            year = int(rawyear)
-            month = int(rawmonth)
-            day = int(rawday)
+    if not langconfig == "spanish":
+        rawagedate = input(" What date do you want to operate with? (YY-MM-DD) (Name)  ")
+    else:
+        rawagedate = input(" ¿Con qué fecha quieres operar? (YY-MM-DD) (Nombre)  ")
+    if str(rawagedate) == "":
+        print()
+        if not langconfig == "spanish":
+            print(" Couldn't find the name or date (Or it was incorrect)")
+        else:
+            print(" No se encontró el nombre o la fecha (O era incorrecto)")
+        daysleft()
+    else:
+        year = today.year
+        try:
+            year, month, day = map(int, rawagedate.split("-"))
             agedate = date(year, month, day)
             resultage = (today - agedate)
             resultage_days_str = str(resultage.days)
@@ -483,23 +654,88 @@ def age():
             resultage_days_left = str(math.trunc(resultage_days_left_int_raw))
             if resultage_int < 0:
                 print()
-                print(" You must insert a past date, that date hasn't happened yet!")
+                if not langconfig == "spanish":
+                    print(" You must insert a past date, that date hasn't happened yet!")
+                else: 
+                    print(" Debes insertar una fecha pasada, esa fecha no ha ocurrido aún!")
             elif resultage_int == 0:
                 print()
-                print(" That's today!")
+                if not langconfig == "spanish":
+                    print(" That's today!")
+                else:
+                    print(" Eso es hoy!")
             elif resultage_int > 0:
                 print()
-                print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
+                if not langconfig == "spanish":
+                    print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
+                else:
+                    print (" La edad es " + (resultage_str) + " años, " + (resultage_months_left) + " meses y " + (resultage_days_left) + " días")
             restart()
+        except:
+            q = " "
+            namelineq = ""
+            rawagedateq = rawagedate.title()
+            agedateq = " " + rawagedateq + " "
+            file = open("Agenda.txt", "r")
+            searchagepattern = r"\d{4}\-\d{2}\-\d{2}"
+            while(q):
+                q = file.readline()
+                if re.search(agedateq, q):
+                    namelineq = q
+                    break
+            if re.search(searchagepattern, namelineq):
+                rawrawagedatematch = re.search(searchagepattern, namelineq)
+                rawagedatematch = rawrawagedatematch.group()
+                agedatematch = rawagedatematch.split("-")
+                rawyear, rawmonth, rawday = (agedatematch)
+                year = int(rawyear)
+                month = int(rawmonth)
+                day = int(rawday)
+                agedate = date(year, month, day)
+                resultage = (today - agedate)
+                resultage_days_str = str(resultage.days)
+                resultage_days_int_raw = int(resultage_days_str)
+                resultage_int = int(resultage_days_int_raw // 365.1)
+                resultage_str = str(resultage_int)
+                resultage_days_left_int_raw = resultage_days_int_raw - (resultage_int * 365.1)
+                resultage_months_left_raw = resultage_days_left_int_raw // 30.4375
+                resultage_months_left = str(int(resultage_months_left_raw))
+                resultage_days_left_int_raw = resultage_days_left_int_raw - (resultage_months_left_raw * 30.4375)
+                resultage_days_left = str(math.trunc(resultage_days_left_int_raw))
+                if resultage_int < 0:
+                    print()
+                    if not langconfig == "spanish":
+                        print(" You must insert a past date, that date hasn't happened yet!")
+                    else:
+                        print(" Debe sinsertar una fecha pasada, esa fecha no ha ocurrido aún!")
+                elif resultage_int == 0:
+                    print()
+                    if not langconfig == "spanish":
+                        print(" That's today!")
+                    else:
+                        print(" Eso es hoy!")
+                elif resultage_int > 0:
+                    print()
+                    if not langconfig == "spanish":
+                        print (" The age is " + (resultage_str) + " years, " + (resultage_months_left) + " months and " + (resultage_days_left) + " days")
+                    else:
+                        print (" La edad es " + (resultage_str) + " años, " + (resultage_months_left) + " meses y " + (resultage_days_left) + " días")
+                restart()
         else:
             print()
-            print(" Couldn't find the name or date (Or it was incorrect)")
+            if not langconfig == "spanish":
+                print(" Couldn't find the name or date (Or it was incorrect)")
+            else:
+                print(" No se encontró el nombre o la fecha (O era incorrecto)")
             age()
 
 def openfile():
 
     print()
-    whichfile = input(" Which file do you want to open? (Agenda -> A) (Settings -> S) (Birthdays -> B)  ")
+    if not langconfig == "spanish":
+        whichfile = input(" Which file do you want to open? (Agenda -> A) (Settings -> S) (Birthdays -> B)  ")
+    else:
+        whichfile = input(" ¿Qué archivo quieres abrir? (A -> Agenda) (S -> Ajustes) (B -> Cumpleaños)  ")
     try:
         if whichfile in ("a","A"):
             print()
@@ -526,7 +762,10 @@ def openfile():
             except:
                 try:
                     print()
-                    print(" That file isn't available")
+                    if not langconfig == "spanish":
+                        print(" That file isn't available")
+                    else:
+                        print(" Ese archivo no está disponible")
                     openfile()
                 except:
                     openfile()
@@ -545,17 +784,45 @@ def countlines():
     rawcountlines = rawcountlines - 1
     countlines = str(rawcountlines)
     print()
-    print(" There are " + str(countlines) + " lines in the file")
+    if not langconfig == "spanish":
+        print(" There are " + str(countlines) + " lines in the file")
+    else:
+        print(" Hay " + str(countlines) + " líneas en el documento")
     restart()
 
 def copyline():
     
     print()
-    rawline = int(input(" Line to copy: "))
-    line = int(rawline) 
-    file = open("Agenda.txt", "r") 
-    line = file.readlines() 
-    pyperclip.copy (line[(int(rawline)-1)])
+    if not langconfig == "spanish":
+        rawrawline = (input(" Line to copy: "))
+    else:
+        rawrawline = (input(" Línea a copiar: "))
+    if rawrawline == "":
+        print()
+        if not langconfig == "spanish":
+            print(" Couldn't find that line")
+        else:
+            print(" No se encontró esa línea")
+        copyline()
+    else:
+        try:
+            rawline = int(rawrawline)
+            line = int(rawline) 
+            file = open("Agenda.txt", "r") 
+            line = file.readlines() 
+            pyperclip.copy (line[(int(rawline)-1)])
+            print()
+            if not langconfig == "spanish":
+                print(" Line copied")
+            else:
+                print(" Línea copiada")
+        except:
+            print()
+            if not langconfig == "spanish":
+                print(" Couldn't find that line")
+            else:
+                print(" No se encontró esa línea")
+            copyline()
     
     file.close
     restart()
@@ -566,7 +833,10 @@ def mail():
     mailpattern = r"\w+@\w+\.\w+"
     print()
     w = " "
-    rawchosennamemail = input(" What name is the mail linked to? ")
+    if not langconfig == "spanish":
+        rawchosennamemail = input(" What name is the mail linked to? ")
+    else:
+        rawchosennamemail = input(" ¿A qué nombre está asociado el correo? ")
     chosennamemail = " " + rawchosennamemail.title() + " "
     namemailline =  " "
     while(w):
@@ -579,7 +849,10 @@ def mail():
         mailmatch = str(rawmailmatch.group())
         pyperclip.copy (mailmatch)
         print()
-        answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
+        if not langconfig == "spanish":
+            answergmail = input(" Copied to clipboard, do you want to open mail? (Y / Enter) ")
+        else:
+            answergmail = input(" Copiado al portapapeles, ¿quieres abrir el mail? (Y / Enter) ")
         if answergmail in ("y", "Y"):
 
                 raconfig = setting()
@@ -596,13 +869,19 @@ def mail():
                     webbrowser.open('https://outlook.live.com/mail/0/')
                 else: 
                     print()
-                    print(" The config file has an unsupported email provider")
+                    if not langconfig == "spanish":
+                        print(" The config file has an unsupported email provider")
+                    else:
+                        print(" El archivo de configuración tiene un proveedor de email no soportado") 
                     restart()
         else:
             choose()
     else:           
         print()
-        print(" Couldn't find the name or mail")
+        if not langconfig == "spanish":
+            print(" Couldn't find the name or mail")
+        else:
+            print(" No se encontró el nombre o mail")
         mail()
 
 def setting():
@@ -615,7 +894,10 @@ def setting():
 def birthday():
   
     print()
-    rawchosendate = input(" What birthday do you want to be reminded of? (Name) ")
+    if not langconfig == "spanish":
+        rawchosendate = input(" What birthday do you want to be reminded of? (Name) ")
+    else:
+        rawchosendate = input(" ¿De qué cumpleaños quieres ser notificado? (Nombre) ")
     w = " "
     nameline = ""
     rawchosennamedays = rawchosendate.title()
@@ -632,7 +914,10 @@ def birthday():
     if re.search(searchdayspattern, nameline):
         if rawchosendate == "":
             print()
-            print(" No person has been found with that name")
+            if not langconfig == "spanish":
+                print(" No person has been found with that name")
+            else:
+                print(" Ninguna persona fue encontrada con ese nombre")
             restart()
         else:
             rawrawdatematch = re.search(searchdayspattern, nameline)
@@ -642,7 +927,10 @@ def birthday():
             del datematch[0]
             rawmonth, rawday = (datematch)
             print()
-            nametoadd = input(" What name do you want this date to be associated with? ")
+            if not langconfig == "spanish":
+                nametoadd = input(" What name do you want this date to be associated with? ")
+            else:
+                nametoadd = input(" ¿Con qué nombre quieres que esté asociado? ")
             if nametoadd == "":
                 file = open("birthday.txt", "a+")
                 file.write("\n")
@@ -652,19 +940,28 @@ def birthday():
                 file.write("\n")
                 file.write(" " + nametoadd + " | " + rawmonth + "-" + rawday + " ")
             print()
-            print (" This birthday has been added to list")
+            if not langconfig == "spanish":
+                print (" This birthday has been added to list")
+            else:
+                print (" Este cumpleaños ha sido añadido a la lista")
             file.close()
             restart()
         
     else:           
         print()
-        print(" Couldn't find the name or date (Or it was incorrect)")
+        if not langconfig == "spanish":
+            print(" Couldn't find the name or date (Or it was incorrect)")
+        else:
+            print (" No se encontró el nombre o la fecha (O era incorrecto)")
         birthday()
 
 def run():
     
     print()
-    whichprogram = input(" Which program do you want to run? (Birthday -> B) (Calendar -> C) (Task Manager -> T) (Mail -> M) ")
+    if not langconfig == "spanish":
+        whichprogram = input(" Which program do you want to run? (Birthday -> B) (Calendar -> C) (Task Manager -> T) (Mail -> M) ")
+    else:
+        whichprogram = input(" ¿Qué programa quieres ejecutar? (Cumpleaños -> B) (Calendario -> C) (Gestor de tareas -> T) (Mail -> M) ")
 
     if whichprogram in ("B","b"):
         os.startfile("BirthdaysCheck.pyw")
@@ -683,7 +980,10 @@ def run():
             restart()
         else:
             print()
-            print(" The config file has an unsupported calendar provider")
+            if not langconfig == "spanish":
+                print(" The config file has an unsupported calendar provider")
+            else:
+                print( " La configuración tiene un proveedor de calendario no soportado")
             restart()
 
     elif whichprogram in ("m","M"):
@@ -702,7 +1002,10 @@ def run():
                 webbrowser.open('https://outlook.live.com/mail/0/')
         else: 
             print()
-            print(" The config file has an unsupported email provider")
+            if not langconfig == "spanish":
+                print(" The config file has an unsupported email provider")
+            else:
+                print( " La configuración tiene un proveedor de correo no soportado")
             restart()
 
     elif whichprogram in ("T","t"):
@@ -718,7 +1021,10 @@ def run():
             restart()
         else:
             print()
-            print(" The config file has an unsupported manager provider")
+            if not langconfig == "spanish":
+                print(" The config file has an unsupported manager provider")
+            else:
+                print( " La configuración tiene un gestor de tareas no soportado")
             restart()
 
 def phone():
@@ -726,7 +1032,10 @@ def phone():
     phonepattern = r"\d\d\d\d\d\d\d\d\d"
     print()
     w = " "
-    rawchosennamephone = input(" What name is the phone number linked to? ")
+    if not langconfig == "spanish":
+        rawchosennamephone = input(" What name is the phone number linked to? ")
+    else:
+        rawchosennamephone = input(" ¿Con qué nombre está asociado? ")
     chosennamephone = " " + rawchosennamephone.title() + " "
     namephoneline =  " "
     while(w):
@@ -739,32 +1048,32 @@ def phone():
         phonematch = str(rawphonematch.group())
         pyperclip.copy (phonematch)
         print()
-        answergmail = input(" Copied to clipboard, do you want to open gmail? (Y / Enter) ")
-        if answergmail in ("y", "Y"):
+        if not langconfig == "spanish":
+            answerphone = input(" Copied to clipboard, do you want to open whatsapp? (Y / Enter) ")
+        else:
+            answerphone = input(" Copiado al portapapeles, ¿quieres abrir whatsapp? (Y / Enter) ")
+        if answerphone in ("y", "Y"):
 
-                raconfig = setting()
-                config = str(raconfig[0])
+            if exists("Whatsapp.lnk"):
+                os.startfile (r"C:\Jorge\Python\WhatsApp.lnk")
+                choose()
+            else: 
+                webbrowser.open('https://web.whatsapp.com/')
+                choose()
 
-                if config == "gmail":
-                    if exists("Gmail.lnk"):
-                        os.system ("cd C:\Program Files (x86)\Microsoft\Edge\Application & msedge_proxy.exe --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm --app-url=https://mail.google.com/mail/?usp=installed_webapp --app-launch-source=4")
-                        choose()
-                    else: 
-                        webbrowser.open('https://mail.google.com/mail/u/0/')
-                        choose()
-                elif config == "outlook":
-                    webbrowser.open('https://outlook.live.com/mail/0/')
-                else: 
-                    print()
-                    print(" The config file has an unsupported email provider")
-                    restart()
         else:
             choose()
     else:           
         print()
-        print(" Couldn't find the name or phone number")
+        if not langconfig == "spanish":
+            print(" Couldn't find the name or phone number")
+        else:
+            print(" No se encontró el nombre o número de teléfono")
         mail()
+
+languageconfig = setting()
+langconfig = str(languageconfig[4])
 
 choose() 
 
-#whatsapp support with phone
+#windows calendar api to add birthdays to calendar when added to reminder
