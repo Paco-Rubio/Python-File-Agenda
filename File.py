@@ -261,6 +261,12 @@ def addtofile():
             rawnum = input(" How many people?  ")
         else:
             rawnum = input (" ¿Cuántas personas? ")
+
+        if rawnum == " ":
+            print()
+            print(" -")
+            choose()
+
         file = open("Agenda.txt", "a+")
         if rawnum == "":
             print()
@@ -291,6 +297,12 @@ def addtofile():
                 name = (input(" Name number " + order + "?  "))
             else:
                 name = (input(" ¿Nombre número " + order + "?  "))
+
+            if name == " ":
+                print()
+                print(" -")
+                choose()
+
             if name == "":
                 print()
                 if not langconfig == "spanish":
@@ -431,6 +443,12 @@ def searchinfile():
         rawword = input (" Word to search  (Enter or '.' for wildcard): ")
     else:
         rawword = input(" Palabra a buscar (Enter o '.' para comodín): ")
+
+    if rawword == " ":
+        print()
+        print(" -")
+        choose()
+
     print()
     word = rawword.title()
     
@@ -498,6 +516,12 @@ def daysleft():
         rawchosendate = input(" What date do you want to operate with? (MM-DD) (Name) ")
     else:
         rawchosendate = input(" ¿Con qué fecha quieres operar? (MM-DD) (Nombre) ")
+
+    if rawchosendate == " ":
+        print()
+        print(" -")
+        choose()
+
     if str(rawchosendate) == "":
         print()
         if not langconfig == "spanish":
@@ -630,6 +654,12 @@ def age():
         rawagedate = input(" What date do you want to operate with? (YY-MM-DD) (Name)  ")
     else:
         rawagedate = input(" ¿Con qué fecha quieres operar? (YY-MM-DD) (Nombre)  ")
+
+    if rawagedate == " ":
+        print()
+        print(" -")
+        choose()
+
     if str(rawagedate) == "":
         print()
         if not langconfig == "spanish":
@@ -736,6 +766,12 @@ def openfile():
         whichfile = input(" Which file do you want to open? (Agenda -> A) (Settings -> S) (Birthdays -> B)  ")
     else:
         whichfile = input(" ¿Qué archivo quieres abrir? (A -> Agenda) (S -> Ajustes) (B -> Cumpleaños)  ")
+
+    if whichfile == " ":
+        print()
+        print(" -")
+        choose()
+
     try:
         if whichfile in ("a","A"):
             print()
@@ -797,6 +833,12 @@ def copyline():
         rawrawline = (input(" Line to copy: "))
     else:
         rawrawline = (input(" Línea a copiar: "))
+
+    if rawrawline == " ":
+        print()
+        print(" -")
+        choose()
+
     if rawrawline == "":
         print()
         if not langconfig == "spanish":
@@ -837,6 +879,12 @@ def mail():
         rawchosennamemail = input(" What name is the mail linked to? ")
     else:
         rawchosennamemail = input(" ¿A qué nombre está asociado el correo? ")
+
+    if rawchosennamemail == " ":
+        print()
+        print(" -")
+        choose()
+
     chosennamemail = " " + rawchosennamemail.title() + " "
     namemailline =  " "
     while(w):
@@ -898,6 +946,12 @@ def birthday():
         rawchosendate = input(" What birthday do you want to be reminded of? (Name) ")
     else:
         rawchosendate = input(" ¿De qué cumpleaños quieres ser notificado? (Nombre) ")
+
+    if rawchosendate == " ":
+        print()
+        print(" -")
+        choose()
+
     w = " "
     nameline = ""
     rawchosennamedays = rawchosendate.title()
@@ -918,7 +972,7 @@ def birthday():
                 print(" No person has been found with that name")
             else:
                 print(" Ninguna persona fue encontrada con ese nombre")
-            restart()
+            birthday()
         else:
             rawrawdatematch = re.search(searchdayspattern, nameline)
             rawdatematch = rawrawdatematch.group()
@@ -1027,6 +1081,19 @@ def run():
                 print( " La configuración tiene un gestor de tareas no soportado")
             restart()
 
+    if whichprogram == " ":
+        print()
+        print(" -")
+        choose()
+
+    else:
+        print()
+        if not langconfig == "spanish":
+            print(" That program isn't available ")
+        else:
+            print(" Ese programa no está disponible ")
+        run()
+
 def phone():
     file = open("Agenda.txt", "r")
     phonepattern = r"\d\d\d\d\d\d\d\d\d"
@@ -1036,6 +1103,22 @@ def phone():
         rawchosennamephone = input(" What name is the phone number linked to? ")
     else:
         rawchosennamephone = input(" ¿Con qué nombre está asociado? ")
+
+    if rawchosennamephone == "":
+        if not langconfig == "spanish":
+            print()
+            print (" You need to enter a name")
+            phone()
+        else:
+            print()
+            print (" Es necesario insertar un nombre")
+            phone()
+
+    if rawchosennamephone == " ":
+        print()
+        print(" -")
+        choose()
+
     chosennamephone = " " + rawchosennamephone.title() + " "
     namephoneline =  " "
     while(w):
@@ -1077,3 +1160,4 @@ langconfig = str(languageconfig[4])
 choose() 
 
 #windows calendar api to add birthdays to calendar when added to reminder
+#Ok, going back (Esc to exit a function)
