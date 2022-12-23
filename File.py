@@ -615,13 +615,13 @@ def daysleft():
                         print (" Quedan " + result_days_str + " días")
                     restart()
         
-        else:           
-            print()
-            if not langconfig == "spanish":
-                print(" Couldn't find the name or date (Or it was incorrect)")
-            else:
-                print(" No se encontró el nombre o la fecha (O era incorrecto)")
-            daysleft()
+            else:           
+                print()
+                if not langconfig == "spanish":
+                    print(" Couldn't find the name or date (Or it was incorrect)")
+                else:
+                    print(" No se encontró el nombre o la fecha (O era incorrecto)")
+                daysleft()
 
 def finish():
     
@@ -751,13 +751,13 @@ def age():
                     else:
                         print (" La edad es " + (resultage_str) + " años, " + (resultage_months_left) + " meses y " + (resultage_days_left) + " días")
                 restart()
-        else:
-            print()
-            if not langconfig == "spanish":
-                print(" Couldn't find the name or date (Or it was incorrect)")
             else:
-                print(" No se encontró el nombre o la fecha (O era incorrecto)")
-            age()
+                print()
+                if not langconfig == "spanish":
+                    print(" Couldn't find the name or date (Or it was incorrect)")
+                else:
+                    print(" No se encontró el nombre o la fecha (O era incorrecto)")
+                age()
 
 def openfile():
 
