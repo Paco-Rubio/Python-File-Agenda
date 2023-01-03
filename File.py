@@ -1160,3 +1160,4 @@ langconfig = str(languageconfig[4])
 choose() 
 
 #windows calendar api to add birthdays to calendar when added to reminder
+#esc function on write to skip optional steps while keeping the same file formatting
